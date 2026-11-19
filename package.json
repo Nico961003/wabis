@@ -1,0 +1,26 @@
+{
+  "name": "wabis-catalog",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "backend",
+    "frontend",
+    "shared"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace backend\" \"npm run dev --workspace frontend\"",
+    "build": "npm run build --workspace shared && npm run build --workspace backend && npm run build --workspace frontend",
+    "typecheck": "npm run build --workspace shared && npm run typecheck --workspace backend && npm run typecheck --workspace frontend",
+    "lint": "npm run lint --workspace backend && npm run lint --workspace frontend",
+    "test": "npm run test --workspace backend && npm run test --workspace frontend",
+    "seed": "npm run seed --workspace backend",
+    "format": "prettier --write \"{backend,frontend,shared}/src/**/*.{ts,tsx}\" \"*.md\"",
+    "format:check": "prettier --check \"{backend,frontend,shared}/src/**/*.{ts,tsx}\" \"*.md\""
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "concurrently": "^9.2.1",
+    "prettier": "^3.10.1",
+    "typescript-eslint": "^8.72.2"
+  }
+}
